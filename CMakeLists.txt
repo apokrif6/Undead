@@ -3,11 +3,9 @@ project(Undead)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(Undead main.cpp
-        src/Managers/AssetManager/AssetManager.cpp
-        src/Managers/AssetManager/AssetManager.h
-        src/Game/Game.cpp
-        src/Game/Game.h)
+file(GLOB SOURCES "src/*.cpp" "src/**/*.cpp")
+
+add_executable(Undead main.cpp ${SOURCES})
 
 set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR C:/SFML/lib/cmake/SFML)
