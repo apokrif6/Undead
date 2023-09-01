@@ -5,6 +5,13 @@
 #include "Game.h"
 
 Game::Game(int screenWidth, int screenHeight, const std::string &gameTitle) {
+    player.setRadius(40.f);
+    player.setFillColor(sf::Color::Magenta);
+
+    InputManager inputManager(player);
+
+    mr_gameData = std::make_shared<GameData>(inputManager);
+
     mr_gameData->renderWindow.create(sf::VideoMode(screenWidth, screenHeight), gameTitle);
 
     Start();
@@ -17,10 +24,6 @@ void Game::Start() {
 
     float accumulator = 0.f;
 
-    sf::CircleShape shape;
-    shape.setRadius(40.f);
-    shape.setFillColor(sf::Color::Magenta);
-
     while (mr_gameData->renderWindow.isOpen()) {
         newTime = m_clock.getElapsedTime().asSeconds();
         frameTime = newTime - currentTime;
@@ -31,6 +34,8 @@ void Game::Start() {
         while (accumulator >= m_updateRate) {
             //TODO
             //create tick logic
+
+            mr_gameData->inputManager.HandleInput();
 
             accumulator -= m_updateRate;
         }
@@ -43,7 +48,7 @@ void Game::Start() {
         }
 
         mr_gameData->renderWindow.clear();
-        mr_gameData->renderWindow.draw(shape);
+        mr_gameData->renderWindow.draw(player);
         mr_gameData->renderWindow.display();
     }
 }

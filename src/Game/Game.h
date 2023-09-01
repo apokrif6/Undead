@@ -2,16 +2,20 @@
 
 #include "SFML/Graphics.hpp"
 #include "../Managers/AssetManager/AssetManager.h"
+#include "../Managers/InputManager/InputManager.h"
 #include "memory"
 
 struct GameData {
     sf::RenderWindow renderWindow;
     AssetManager assetManager;
+    InputManager inputManager;
+
+    explicit GameData(InputManager input) : inputManager(input) {}
 };
 
 class Game {
 public:
-    Game(int screenWidth, int screenHeight, const std::string& gameTitle);
+    Game(int screenWidth, int screenHeight, const std::string &gameTitle);
 
     ~Game() = default;
 
@@ -22,5 +26,7 @@ private:
 
     sf::Clock m_clock;
 
-    std::shared_ptr<GameData> mr_gameData = std::make_shared<GameData>();
+    std::shared_ptr<GameData> mr_gameData;
+
+    sf::CircleShape player;
 };
