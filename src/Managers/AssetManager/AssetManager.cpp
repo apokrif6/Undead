@@ -2,21 +2,21 @@
 #include <iostream>
 #include <fstream>
 
-void AssetManager::LoadTexture(const std::string &texture_name, const std::string &file_name) {
+void AssetManager::LoadTexture(const std::string &textureName, const std::string &fileName) {
     sf::Texture texture;
 
-    if (!texture.loadFromFile(file_name)) return;
+    if (!texture.loadFromFile(fileName)) return;
 
-    loaded_textures[texture_name] = texture;
+    m_loadedTextures[textureName] = texture;
 }
 
-sf::Texture &AssetManager::GetTexture(const std::string &texture_name) {
+sf::Texture &AssetManager::GetTexture(const std::string &textureName) {
     try {
-        return loaded_textures.at(texture_name);
+        return m_loadedTextures.at(textureName);
     } catch (const std::out_of_range &exception) {
         //TODO
         //create logger
         std::ofstream file("log.txt");
-        file << "Texture " + texture_name + "wasn't loaded" << std::endl;
+        file << "Texture " + textureName + "wasn't loaded" << std::endl;
     }
 }

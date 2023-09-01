@@ -9,10 +9,10 @@ public:
 
     ~AssetManager() = default;
 
-    void LoadTexture(const std::string& texture_name, const std::string& file_name);
+    void LoadTexture(const std::string& textureName, const std::string& fileName);
 
-    sf::Texture &GetTexture(const std::string& texture_name);
+    sf::Texture &GetTexture(const std::string& textureName);
 
 private:
-    std::map<std::string, sf::Texture> loaded_textures;
+    std::map<std::string, sf::Texture> m_loadedTextures;
 };
