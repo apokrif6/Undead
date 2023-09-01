@@ -1,5 +1,8 @@
 #include <SFML/Graphics.hpp>
 
+#define SCREEN_WIDTH = 640;
+#define SCREEN_HEIGHT = 480;
+
 int main()
 {
     int modeWidth = 640;
