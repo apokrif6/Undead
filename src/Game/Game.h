@@ -3,6 +3,7 @@
 #include "SFML/Graphics.hpp"
 #include "../Managers/AssetManager/AssetManager.h"
 #include "../Managers/InputManager/InputManager.h"
+#include "../Player/Player.h"
 #include "memory"
 
 struct GameData {
@@ -28,5 +29,5 @@ private:
 
     std::shared_ptr<GameData> mr_gameData;
 
-    sf::CircleShape player;
+    Player m_player;
 };

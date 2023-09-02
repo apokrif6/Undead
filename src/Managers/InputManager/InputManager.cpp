@@ -2,8 +2,12 @@
 
 void InputManager::HandleInput() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
-        r_shape.move(sf::Vector2f(-0.5f, 0.f));
+        mr_player.MoveLeft();
     } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
-        r_shape.move(sf::Vector2f(0.5f, 0.f));
+        mr_player.MoveRight();
+    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)) {
+        mr_player.MoveDown();
+    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
+        mr_player.MoveUp();
     }
 }

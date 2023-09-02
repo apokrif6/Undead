@@ -1,14 +1,7 @@
-//
-// Created by EugenBerencian on 01/09/2023.
-//
-
 #include "Game.h"
 
 Game::Game(int screenWidth, int screenHeight, const std::string &gameTitle) {
-    player.setRadius(40.f);
-    player.setFillColor(sf::Color::Magenta);
-
-    InputManager inputManager(player);
+    InputManager inputManager(m_player);
 
     mr_gameData = std::make_shared<GameData>(inputManager);
 
@@ -48,7 +41,7 @@ void Game::Start() {
         }
 
         mr_gameData->renderWindow.clear();
-        mr_gameData->renderWindow.draw(player);
+        mr_gameData->renderWindow.draw(m_player.GetShape());
         mr_gameData->renderWindow.display();
     }
 }

@@ -1,15 +1,16 @@
 #pragma once
 
 #include "SFML/Graphics.hpp"
+#include "../../Player/Player.h"
 
 class InputManager {
 public:
-    explicit InputManager(sf::CircleShape &shapeRef) : r_shape(shapeRef) {}
+    explicit InputManager(Player &playerRef) : mr_player(playerRef) {}
 
     ~InputManager() = default;
 
     void HandleInput();
 
 private:
-    sf::CircleShape& r_shape;
+    Player &mr_player;
 };

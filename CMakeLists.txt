@@ -3,11 +3,9 @@ project(Undead)
 
 set(CMAKE_CXX_STANDARD 17)
 
-file(GLOB SOURCES "src/*.cpp" "src/**/*.cpp")
+file(GLOB SOURCES "src/**/*.cpp" "src/**/**/*.cpp")
 
-add_executable(Undead main.cpp ${SOURCES}
-        src/Managers/InputManager/InputManager.cpp
-        src/Managers/InputManager/InputManager.h)
+add_executable(Undead main.cpp ${SOURCES})
 
 set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR C:/SFML/lib/cmake/SFML)
