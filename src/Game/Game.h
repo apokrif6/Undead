@@ -23,11 +23,13 @@ public:
 private:
     void Start();
 
-    const float m_updateRate = 0.016;
+    const float _updateRate = 0.016;
 
-    sf::Clock m_clock;
+    sf::Clock _clock;
 
-    std::shared_ptr<GameData> mr_gameData;
+    std::shared_ptr<GameData> _gameData;
 
-    Player m_player;
+    Player _player;
+
+    void InitPlayer();
 };

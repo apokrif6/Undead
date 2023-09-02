@@ -2,9 +2,12 @@
 
 #include "SFML/Graphics.hpp"
 
+#define PLAYER_TEXTURE_NAME "Player"
+#define PLAYER_TEXTURE_FILE_NAME "../resources/img/test_player.png"
+
 class Player {
 public:
-    Player();
+    Player() = default;
 
     ~Player() = default;
 
@@ -16,10 +19,12 @@ public:
 
     void MoveUp();
 
-    sf::CircleShape &GetShape();
+    void SetTexture(const sf::Texture &texture);
+
+    sf::Sprite &GetSprite();
 
 private:
-    sf::CircleShape mr_shape;
+    sf::Sprite _sprite;
 
-    float m_speed = 10.f;
+    float _speed = 10.f;
 };

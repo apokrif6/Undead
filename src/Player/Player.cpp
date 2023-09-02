@@ -1,26 +1,27 @@
 #include "Player.h"
 
-Player::Player() {
-    mr_shape.setRadius(40.f);
-    mr_shape.setFillColor(sf::Color::Green);
-}
-
 void Player::MoveLeft() {
-    mr_shape.move(sf::Vector2f(-m_speed, 0.f));
+    _sprite.move(sf::Vector2f(-_speed, 0.f));
 }
 
 void Player::MoveRight() {
-    mr_shape.move(sf::Vector2f(m_speed, 0.f));
+    _sprite.move(sf::Vector2f(_speed, 0.f));
 }
 
 void Player::MoveDown() {
-    mr_shape.move(sf::Vector2f(0.0f, m_speed));
+    _sprite.move(sf::Vector2f(0.0f, _speed));
 }
 
 void Player::MoveUp() {
-    mr_shape.move(sf::Vector2f(0.0f, -m_speed));
+    _sprite.move(sf::Vector2f(0.0f, -_speed));
 }
 
-sf::CircleShape &Player::GetShape() {
-    return mr_shape;
+sf::Sprite &Player::GetSprite() {
+    return _sprite;
+}
+
+void Player::SetTexture(const sf::Texture &texture) {
+    _sprite.setTexture(texture);
+
+    _sprite.setScale(0.3f, 0.3f);
 }

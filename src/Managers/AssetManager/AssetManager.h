@@ -14,5 +14,5 @@ public:
     sf::Texture &GetTexture(const std::string& textureName);
 
 private:
-    std::map<std::string, sf::Texture> m_loadedTextures;
+    std::map<std::string, sf::Texture> _loadedTextures;
 };

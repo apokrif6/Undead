@@ -1,11 +1,13 @@
 #include "Game.h"
 
 Game::Game(int screenWidth, int screenHeight, const std::string &gameTitle) {
-    InputManager inputManager(m_player);
+    InputManager inputManager(_player);
 
-    mr_gameData = std::make_shared<GameData>(inputManager);
+    _gameData = std::make_shared<GameData>(inputManager);
 
-    mr_gameData->renderWindow.create(sf::VideoMode(screenWidth, screenHeight), gameTitle);
+    InitPlayer();
+
+    _gameData->renderWindow.create(sf::VideoMode(screenWidth, screenHeight), gameTitle);
 
     Start();
 }
@@ -13,35 +15,38 @@ Game::Game(int screenWidth, int screenHeight, const std::string &gameTitle) {
 void Game::Start() {
     float newTime, frameTime;
 
-    float currentTime = m_clock.getElapsedTime().asSeconds();
+    float currentTime = _clock.getElapsedTime().asSeconds();
 
     float accumulator = 0.f;
 
-    while (mr_gameData->renderWindow.isOpen()) {
-        newTime = m_clock.getElapsedTime().asSeconds();
+    while (_gameData->renderWindow.isOpen()) {
+        newTime = _clock.getElapsedTime().asSeconds();
         frameTime = newTime - currentTime;
 
         currentTime = newTime;
         accumulator += frameTime;
 
-        while (accumulator >= m_updateRate) {
-            //TODO
-            //create tick logic
+        while (accumulator >= _updateRate) {
+            _gameData->inputManager.HandleInput();
 
-            mr_gameData->inputManager.HandleInput();
-
-            accumulator -= m_updateRate;
+            accumulator -= _updateRate;
         }
 
         sf::Event event{};
 
-        while (mr_gameData->renderWindow.pollEvent(event)) {
+        while (_gameData->renderWindow.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
-                mr_gameData->renderWindow.close();
+                _gameData->renderWindow.close();
         }
 
-        mr_gameData->renderWindow.clear();
-        mr_gameData->renderWindow.draw(m_player.GetShape());
-        mr_gameData->renderWindow.display();
+        _gameData->renderWindow.clear();
+        _gameData->renderWindow.draw(_player.GetSprite());
+        _gameData->renderWindow.display();
     }
+}
+
+void Game::InitPlayer() {
+    _gameData->assetManager.LoadTexture(PLAYER_TEXTURE_NAME, PLAYER_TEXTURE_FILE_NAME);
+
+    _player.SetTexture(_gameData->assetManager.GetTexture(PLAYER_TEXTURE_NAME));;
 }

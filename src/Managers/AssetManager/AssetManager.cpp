@@ -7,12 +7,12 @@ void AssetManager::LoadTexture(const std::string &textureName, const std::string
 
     if (!texture.loadFromFile(fileName)) return;
 
-    m_loadedTextures[textureName] = texture;
+    _loadedTextures[textureName] = texture;
 }
 
 sf::Texture &AssetManager::GetTexture(const std::string &textureName) {
     try {
-        return m_loadedTextures.at(textureName);
+        return _loadedTextures.at(textureName);
     } catch (const std::out_of_range &exception) {
         //TODO
         //create logger
