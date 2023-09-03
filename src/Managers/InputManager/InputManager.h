@@ -5,12 +5,12 @@
 
 class InputManager {
 public:
-    explicit InputManager(Player &playerRef) : mr_player(playerRef) {}
+    explicit InputManager(Player &playerRef) : _player(playerRef) {}
 
     ~InputManager() = default;
 
-    void HandleInput();
+    void handleInput();
 
 private:
-    Player &mr_player;
+    Player &_player;
 };

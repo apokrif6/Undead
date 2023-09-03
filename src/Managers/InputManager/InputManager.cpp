@@ -1,13 +1,30 @@
 #include "InputManager.h"
+#include "cmath"
 
-void InputManager::HandleInput() {
+void InputManager::handleInput() {
+    sf::Vector2f direction;
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
-        mr_player.MoveLeft();
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
-        mr_player.MoveRight();
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)) {
-        mr_player.MoveDown();
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
-        mr_player.MoveUp();
+        direction.x = -1;
     }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
+        direction.x = 1;
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)) {
+        direction.y = 1;
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
+        direction.y = -1;
+    }
+
+    if (direction.x != 0.f && direction.y != 0.f) {
+        direction /= std::sqrt(2.f);
+    }
+
+    _player.move(direction);
+
+    direction = {};
 }

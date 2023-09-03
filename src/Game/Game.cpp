@@ -5,14 +5,14 @@ Game::Game(int screenWidth, int screenHeight, const std::string &gameTitle) {
 
     _gameData = std::make_shared<GameData>(inputManager);
 
-    InitPlayer();
+    initPlayer();
 
     _gameData->renderWindow.create(sf::VideoMode(screenWidth, screenHeight), gameTitle);
 
-    Start();
+    start();
 }
 
-void Game::Start() {
+void Game::start() {
     float newTime, frameTime;
 
     float currentTime = _clock.getElapsedTime().asSeconds();
@@ -27,7 +27,7 @@ void Game::Start() {
         accumulator += frameTime;
 
         while (accumulator >= _updateRate) {
-            _gameData->inputManager.HandleInput();
+            _gameData->inputManager.handleInput();
 
             accumulator -= _updateRate;
         }
@@ -40,13 +40,13 @@ void Game::Start() {
         }
 
         _gameData->renderWindow.clear();
-        _gameData->renderWindow.draw(_player.GetSprite());
+        _gameData->renderWindow.draw(_player.getSprite());
         _gameData->renderWindow.display();
     }
 }
 
-void Game::InitPlayer() {
-    _gameData->assetManager.LoadTexture(PLAYER_TEXTURE_NAME, PLAYER_TEXTURE_FILE_NAME);
+void Game::initPlayer() {
+    _gameData->assetManager.loadTexture(PLAYER_TEXTURE_NAME, PLAYER_TEXTURE_FILE_NAME);
 
-    _player.SetTexture(_gameData->assetManager.GetTexture(PLAYER_TEXTURE_NAME));;
+    _player.setTexture(_gameData->assetManager.getTexture(PLAYER_TEXTURE_NAME));;
 }

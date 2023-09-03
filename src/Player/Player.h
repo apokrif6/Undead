@@ -11,20 +11,14 @@ public:
 
     ~Player() = default;
 
-    void MoveLeft();
+    void move(sf::Vector2f direction);
 
-    void MoveRight();
+    void setTexture(const sf::Texture &texture);
 
-    void MoveDown();
-
-    void MoveUp();
-
-    void SetTexture(const sf::Texture &texture);
-
-    sf::Sprite &GetSprite();
+    sf::Sprite &getSprite();
 
 private:
     sf::Sprite _sprite;
 
-    float _speed = 10.f;
+    float _speed = 5.f;
 };

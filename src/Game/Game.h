@@ -21,7 +21,7 @@ public:
     ~Game() = default;
 
 private:
-    void Start();
+    void start();
 
     const float _updateRate = 0.016;
 
@@ -31,5 +31,5 @@ private:
 
     Player _player;
 
-    void InitPlayer();
+    void initPlayer();
 };
