@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "iostream"
 
 Game::Game(int screenWidth, int screenHeight, const std::string &gameTitle) {
     InputManager inputManager(_player);
@@ -18,7 +17,6 @@ void Game::start() {
         float deltaTime = _clock.getElapsedTime().asSeconds();
 
         while (deltaTime >= _updateRate) {
-            std::cout << deltaTime << std::endl;
             _gameData->inputManager.handleInput();
 
             deltaTime = _clock.restart().asSeconds();
@@ -31,7 +29,7 @@ void Game::start() {
                 _gameData->renderWindow.close();
         }
 
-        _gameData->renderWindow.clear();
+        _gameData->renderWindow.clear(sf::Color::White);
         _gameData->renderWindow.draw(_player.getSprite());
         _gameData->renderWindow.display();
     }
