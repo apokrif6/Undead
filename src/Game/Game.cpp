@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "iostream"
 
 Game::Game(int screenWidth, int screenHeight, const std::string &gameTitle) {
     InputManager inputManager(_player);
@@ -13,23 +14,14 @@ Game::Game(int screenWidth, int screenHeight, const std::string &gameTitle) {
 }
 
 void Game::start() {
-    float newTime, frameTime;
-
-    float currentTime = _clock.getElapsedTime().asSeconds();
-
-    float accumulator = 0.f;
-
     while (_gameData->renderWindow.isOpen()) {
-        newTime = _clock.getElapsedTime().asSeconds();
-        frameTime = newTime - currentTime;
+        float deltaTime = _clock.getElapsedTime().asSeconds();
 
-        currentTime = newTime;
-        accumulator += frameTime;
-
-        while (accumulator >= _updateRate) {
+        while (deltaTime >= _updateRate) {
+            std::cout << deltaTime << std::endl;
             _gameData->inputManager.handleInput();
 
-            accumulator -= _updateRate;
+            deltaTime = _clock.restart().asSeconds();
         }
 
         sf::Event event{};

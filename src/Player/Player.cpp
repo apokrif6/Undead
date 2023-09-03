@@ -7,7 +7,11 @@ sf::Sprite &Player::getSprite() {
 void Player::setTexture(const sf::Texture &texture) {
     _sprite.setTexture(texture);
 
-    _sprite.setScale(0.3f, 0.3f);
+    Tile playerTile;
+
+    _sprite.setTextureRect(sf::IntRect(18,22, playerTile.width, playerTile.height));
+
+    _sprite.setScale(2.f, 2.f);
 }
 
 void Player::move(sf::Vector2f direction) {
