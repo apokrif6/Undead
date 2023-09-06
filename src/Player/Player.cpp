@@ -12,12 +12,32 @@ void Player::setTexture(const sf::Texture &texture) {
     _sprite.setScale(2.f, 2.f);
 }
 
-void Player::move(sf::Vector2f direction) {
-    _sprite.move(direction * _speed);
+void Player::setAnimator(Animator animator) {
+    _animator = std::make_unique<Animator>(animator);
 }
 
-void Player::playAnimation(Animation &animation, float deltaTime) {
-    animation.Update(0, deltaTime);
+void Player::move(sf::Vector2f direction) {
+    _sprite.move(direction * _speed);
 
-    _sprite.setTextureRect(animation.intRect);
+    if (direction.x == 0 && direction.y == 0) {
+        _animationRow = 0;
+    } else if (direction.y > 0) {
+        _animationRow = 3;
+        _shouldFlipAnimation = false;
+    } else if (direction.y < 0) {
+        _animationRow = 5;
+        _shouldFlipAnimation = true;
+    } else if (direction.x > 0) {
+        _animationRow = 4;
+        _shouldFlipAnimation = false;
+    } else if (direction.x < 0) {
+        _animationRow = 4;
+        _shouldFlipAnimation = true;
+    }
+}
+
+void Player::update(float deltaTime) {
+    _animator->update(_animationRow, _shouldFlipAnimation, deltaTime);
+
+    _sprite.setTextureRect(_animator->intRect);
 }

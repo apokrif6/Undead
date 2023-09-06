@@ -1,13 +1,13 @@
-#include "Animation.h"
+#include "Animator.h"
 
-Animation::Animation(const sf::Texture &texture, sf::Vector2i imageCount) {
+Animator::Animator(const sf::Texture &texture, sf::Vector2i imageCount) {
     _imageCount = imageCount;
 
     intRect.width = int(texture.getSize().x / _imageCount.x);
     intRect.height = int(texture.getSize().y / _imageCount.y);
 }
 
-void Animation::Update(int row, float deltaTime) {
+void Animator::update(int row, bool _shouldFlipAnimation, float deltaTime) {
     _totalTime += deltaTime;
     _currentImage.y = row;
 
@@ -20,6 +20,13 @@ void Animation::Update(int row, float deltaTime) {
         }
     }
 
-    intRect.left = _currentImage.x * intRect.width;
     intRect.top = _currentImage.y * intRect.height;
+
+    if (_shouldFlipAnimation) {
+        intRect.left = (_currentImage.x + 1) * abs(intRect.width);
+        intRect.width = -abs(intRect.width);
+    } else {
+        intRect.left = _currentImage.x * intRect.width;
+        intRect.width = abs(intRect.width);
+    }
 }

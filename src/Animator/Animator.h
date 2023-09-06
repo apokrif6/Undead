@@ -2,13 +2,13 @@
 
 #include "SFML/Graphics.hpp"
 
-class Animation {
+class Animator {
 public:
-    Animation(const sf::Texture& texture, sf::Vector2i imageCount);
+    Animator(const sf::Texture& texture, sf::Vector2i imageCount);
 
-    ~Animation() = default;
+    ~Animator() = default;
 
-    void Update(int row, float deltaTime);
+    void update(int row, bool _shouldFlipAnimation, float deltaTime);
 
     sf::IntRect intRect;
 

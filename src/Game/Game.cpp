@@ -13,15 +13,13 @@ Game::Game(int screenWidth, int screenHeight, const std::string &gameTitle) {
 }
 
 void Game::start() {
-    Animation animation(_gameData->assetManager.getTexture(PLAYER_TEXTURE_NAME), sf::Vector2i(6, 10));
-
     while (_gameData->renderWindow.isOpen()) {
         float deltaTime = _clock.getElapsedTime().asSeconds();
 
         while (deltaTime >= _updateRate) {
             _gameData->inputManager.handleInput();
 
-            _player.playAnimation(animation, deltaTime);
+            _player.update(deltaTime);
 
             deltaTime = _clock.restart().asSeconds();
         }
@@ -43,4 +41,7 @@ void Game::initPlayer() {
     _gameData->assetManager.loadTexture(PLAYER_TEXTURE_NAME, PLAYER_TEXTURE_FILE_NAME);
 
     _player.setTexture(_gameData->assetManager.getTexture(PLAYER_TEXTURE_NAME));
+
+    _player.setAnimator(Animator(_gameData->assetManager.getTexture(PLAYER_TEXTURE_NAME),
+                                 sf::Vector2i(6, 10)));
 }
