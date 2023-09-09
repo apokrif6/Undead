@@ -2,14 +2,17 @@
 
 #include "SFML/Graphics.hpp"
 #include "../Animator/Animator.h"
+#include "../Weapon/Weapon.h"
 #include "memory"
 
 #define PLAYER_TEXTURE_NAME "Player"
 #define PLAYER_TEXTURE_FILE_NAME "../resources/img/player.png"
+#define WEAPON_TEXTURE_NAME "Weapon"
+#define WEAPON_TEXTURE_FILE_NAME "../resources/img/sword.png"
 
 class Player {
 public:
-    Player() = default;
+    Player();
 
     ~Player() = default;
 
@@ -23,6 +26,10 @@ public:
 
     sf::Sprite &getSprite();
 
+    void createWeapon(const sf::Texture &texture);
+
+    Weapon &getWeapon() const { return *_weapon; }
+
 private:
     sf::Sprite _sprite;
 
@@ -35,4 +42,6 @@ private:
     int _animationRow = 0;
 
     bool _shouldFlipAnimation = false;
+
+    std::unique_ptr<Weapon> _weapon;
 };

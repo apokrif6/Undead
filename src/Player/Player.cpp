@@ -1,5 +1,9 @@
 #include "Player.h"
 
+Player::Player() {
+    _weapon = std::make_unique<Weapon>();
+}
+
 sf::Sprite &Player::getSprite() {
     return _sprite;
 }
@@ -40,4 +44,10 @@ void Player::update(float deltaTime) {
     _animator->update(_animationRow, _shouldFlipAnimation, deltaTime);
 
     _sprite.setTextureRect(_animator->intRect);
+
+    _weapon->setPosition(_sprite.getPosition());
+}
+
+void Player::createWeapon(const sf::Texture &texture) {
+    _weapon->setTexture(texture);
 }

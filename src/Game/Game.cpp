@@ -33,6 +33,7 @@ void Game::start() {
 
         _gameData->renderWindow.clear(sf::Color::White);
         _gameData->renderWindow.draw(_player.getSprite());
+        _gameData->renderWindow.draw(_player.getWeapon().getSprite());
         _gameData->renderWindow.display();
     }
 }
@@ -44,4 +45,8 @@ void Game::initPlayer() {
 
     _player.setAnimator(Animator(_gameData->assetManager.getTexture(PLAYER_TEXTURE_NAME),
                                  sf::Vector2i(6, 10)));
+
+    _gameData->assetManager.loadTexture(WEAPON_TEXTURE_NAME, WEAPON_TEXTURE_FILE_NAME);
+
+    _player.createWeapon(_gameData->assetManager.getTexture(WEAPON_TEXTURE_NAME));
 }
