@@ -21,6 +21,8 @@ void Game::start() {
 
             _player.update(deltaTime);
 
+            _player.getWeapon().update();
+
             deltaTime = _clock.restart().asSeconds();
         }
 

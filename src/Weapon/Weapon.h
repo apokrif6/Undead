@@ -8,6 +8,8 @@ public:
 
     ~Weapon() = default;
 
+    void update();
+
     sf::Sprite &getSprite();
 
     void setTexture(const sf::Texture &texture);
