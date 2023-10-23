@@ -1,10 +1,9 @@
 #include "SoundManager.h"
 
 void SoundManager::playBackgroundTheme() {
-   /* sf::Music music;
-
-    if (!music.openFromFile("resources/audio/background_theme.wav"))
+    if (!backgroundmusic.openFromFile("resources/audio/background_theme.wav"))
         return;
 
-    music.play();*/
+    backgroundmusic.setVolume(15);
+    backgroundmusic.play();
 }

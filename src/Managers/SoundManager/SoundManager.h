@@ -7,4 +7,7 @@
 class SoundManager {
 public:
     void playBackgroundTheme();
+
+private:
+    sf::Music backgroundmusic;
 };

@@ -13,6 +13,8 @@ Game::Game(int screenWidth, int screenHeight, const std::string &gameTitle) {
 }
 
 void Game::start() {
+    _gameData->soundManager.playBackgroundTheme();
+
     while (_gameData->renderWindow.isOpen()) {
         float deltaTime = _clock.getElapsedTime().asSeconds();
 
