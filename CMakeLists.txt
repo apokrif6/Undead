@@ -15,7 +15,10 @@ add_executable(Undead main.cpp
 
 set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR C:/SFML/lib/cmake/SFML)
-find_package(SFML COMPONENTS system window graphics audio REQUIRED)
+find_package(SFML COMPONENTS graphics window audio system REQUIRED)
+#TODO
+#add OpenAL dependency
+#find_package(OpenAL REQUIRED)
 
 include_directories(C:/SFML/include)
-target_link_libraries(Undead sfml-system sfml-window sfml-graphics sfml-audio)
+target_link_libraries(Undead sfml-graphics sfml-window sfml-audio sfml-system)
