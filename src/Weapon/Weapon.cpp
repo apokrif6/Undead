@@ -8,6 +8,8 @@ void Weapon::setTexture(const sf::Texture &texture) {
     _sprite.setScale(0.3f, 0.3f);
 
     _sprite.setTextureRect(sf::IntRect(67, 76, 137, 47));
+
+    _sprite.setOrigin(sf::Vector2f(_sprite.getLocalBounds().width * -2.f, _sprite.getLocalBounds().height));
 }
 
 sf::Sprite &Weapon::getSprite() {

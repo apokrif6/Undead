@@ -1,3 +1,4 @@
+#include <valarray>
 #include "Player.h"
 
 Player::Player() {
@@ -45,7 +46,7 @@ void Player::update(float deltaTime) {
 
     _sprite.setTextureRect(_animator->intRect);
 
-    _weapon->setPosition(_sprite.getPosition());
+    _weapon->setPosition(_sprite.getPosition() + sf::Vector2f{50, 50});
 }
 
 void Player::createWeapon(const sf::Texture &texture) {
