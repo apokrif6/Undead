@@ -1,11 +1,9 @@
 #pragma once
 
-#include "SFML/Graphics.hpp"
 #include "../Managers/AssetManager/AssetManager.h"
 #include "../Managers/InputManager/InputManager.h"
 #include "../Managers/SoundManager/SoundManager.h"
 #include "../Player/Player.h"
-//#include "../config.h"
 #include "memory"
 
 struct GameData {

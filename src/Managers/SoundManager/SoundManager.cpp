@@ -1,7 +1,7 @@
 #include "SoundManager.h"
 
 void SoundManager::playBackgroundTheme() {
-    if (!backgroundmusic.openFromFile("resources/audio/background_theme.wav"))
+    if (!backgroundmusic.openFromFile(BACKGROUND_THEME_FILE_NAME))
         return;
 
     backgroundmusic.setVolume(15);

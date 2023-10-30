@@ -20,11 +20,13 @@ public:
 
     void setAnimator(Animator animator);
 
-    sf::Sprite &getSprite();
+    sf::Sprite &getSprite() { return _sprite; }
 
     void createWeapon(const sf::Texture &texture);
 
     Weapon &getWeapon() const { return *_weapon; }
+
+    sf::RectangleShape &getCollision() const { return *_collision; }
 
 private:
     sf::Sprite _sprite;
@@ -39,5 +41,7 @@ private:
 
     bool _shouldFlipAnimation = false;
 
-    std::unique_ptr<Weapon> _weapon;
+    std::unique_ptr<Weapon> _weapon = std::make_unique<Weapon>();
+
+    std::unique_ptr<sf::RectangleShape> _collision = std::make_unique<sf::RectangleShape>();
 };

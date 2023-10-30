@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "SFML/Graphics.hpp"
 
 Game::Game(int screenWidth, int screenHeight, const std::string &gameTitle) {
     InputManager inputManager(_player);
@@ -36,6 +37,7 @@ void Game::start() {
         }
 
         _gameData->renderWindow.clear(sf::Color::White);
+        _gameData->renderWindow.draw(_player.getCollision());
         _gameData->renderWindow.draw(_player.getSprite());
         _gameData->renderWindow.draw(_player.getWeapon().getSprite());
         _gameData->renderWindow.display();

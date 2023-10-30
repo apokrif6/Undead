@@ -1,12 +1,10 @@
-#include <valarray>
+#include <iostream>
 #include "Player.h"
 
 Player::Player() {
-    _weapon = std::make_unique<Weapon>();
-}
+    _collision->setOutlineColor(sf::Color::Red);
+    _collision->setOutlineThickness(1);
 
-sf::Sprite &Player::getSprite() {
-    return _sprite;
 }
 
 void Player::setTexture(const sf::Texture &texture) {
@@ -47,8 +45,13 @@ void Player::update(float deltaTime) {
     _sprite.setTextureRect(_animator->intRect);
 
     _weapon->setPosition(_sprite.getPosition() + sf::Vector2f{50, 50});
+
+    _collision->setSize({getSprite().getGlobalBounds().getSize().x / 2, getSprite().getGlobalBounds().getSize().y / 2});
+    _collision->setPosition(_sprite.getPosition() + sf::Vector2f{25, 40});
 }
 
 void Player::createWeapon(const sf::Texture &texture) {
     _weapon->setTexture(texture);
 }
+
+
